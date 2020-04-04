@@ -20,7 +20,9 @@ grad = zeros(size(theta));
 hypothesis = sigmoid(X * theta);
 regularize = (lambda/(2*m)) * (sum(theta(2:end).^2));
 
-J = ((-1/m) * ((transpose(y))*log(hypothesis) + (transpose(1-y)) * log(1-hypothesis))) + regularize;
+% J = ((-1/m) * ((transpose(y))*log(hypothesis) + (transpose(1-y)) * log(1-hypothesis))) + regularize;
+
+J = (-1/m) * sum((y.* log(hypothesis)) + ((1-y).*log(1-hypothesis))) + regularize;
 
 grad(1) = (1/m) * ((transpose(X(:, 1))) * (hypothesis-y));
 grad(2:end) = ((1/m) * (transpose(X(:, 2:end)) * (hypothesis-y))) + ((lambda/m) * theta(2:end));

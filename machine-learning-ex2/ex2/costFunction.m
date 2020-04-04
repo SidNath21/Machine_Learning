@@ -21,7 +21,10 @@ grad = zeros(size(theta));
 %
 
 hypothesis = sigmoid(X * theta);
-J = (-1/m) * ((transpose(y)*log(hypothesis)) + (transpose(1-y)) * log(1-hypothesis));
+
+% J = (-1/m) * ((transpose(y)*log(hypothesis)) + (transpose(1-y)) * log(1-hypothesis));  %% y & hypothesis are both vectors so multiplication works
+J = (-1/m) * sum((y.*log(hypothesis)) + ((1-y).* log(1-hypothesis))); % alternative to Cost using element-wise multiplication.
+
 grad = (1/m) * (transpose(X) * (hypothesis - y));
 
 
