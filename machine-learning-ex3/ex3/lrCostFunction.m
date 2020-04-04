@@ -37,20 +37,14 @@ grad = zeros(size(theta));
 %
 
 hypothesis = sigmoid(X*theta);  % a'b = b'a (vectors only) --> X'*theta = theta' * X
-J = (1/m) * ((-transpose(y) * log(hypothesis)) - (transpose(1-y)*log(1-hypothesis)));
+% J = (1/m) * ((-transpose(y) * log(hypothesis)) - (transpose(1-y)*log(1-hypothesis)));
+
+J = (1/m) * sum(-y.*log(hypothesis) - ((1-y).*log(1-hypothesis)));
 cost = hypothesis - y;
 grad = (1/m) * transpose(X) * cost;
 
 J = J + (lambda/(2*m)) * sum(theta(2:end).^2);
 grad(2: end) = grad(2:end) + ((lambda/m) * theta(2:end));
-
-
-
-
-
-
-
-
 
 
 
