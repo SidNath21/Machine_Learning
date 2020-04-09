@@ -32,3 +32,10 @@ theta = normalEquation(X, y);
 fprintf('Calculated Theta Values using Normal Equation \n \n')
 disp(theta);
 fprintf("\n");
+
+% Testing Predictions
+
+years = [1 15];
+sal = years * theta;
+
+disp(sal);
